@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List all orders</title>
+</head>
+<body>
+<h2>All orders:</h2>
+<ul>
+    <li th:each="order: ${allOrders}">
+        <span>Balloon Color: <th:block th:text="${order.balloonColor}"/></span>
+        <span>Balloon Size: <th:block th:text="${order.balloonSize}"/></span>
+        <span>Client Name: <th:block th:text="${order.clientName}"/></span>
+        <span>Client Address: <th:block th:text="${order.clientAddress}"/></span>
+        <span>Order ID: <th:block th:text="${order.getOrderId()}"/></span>
+
+    </li>
+</ul>
+<div><a href="/">Back</a></div>
+
+</body>
+</html>
