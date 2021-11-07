@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Repository
 public class OrderRepository {
@@ -18,13 +19,14 @@ public class OrderRepository {
         this.orderList=new ArrayList<>();
     }
 
-    public List<Order> findAllOrders(){
-        return orderList;
+    public List<Order> findAllOrders(Long clientId){
+
+        return orderList.stream().filter(o -> o.getClientId().equals(clientId)).collect(Collectors.toList());
     }
-    public Order addOrder(String balloonColor, String balloonSize, String clientName, String clientAddress){
+    public Order addOrder(String balloonColor, String balloonSize, String clientName, String clientAddress, Long clientId){
         Random random=new Random();
         long id= random.nextInt(100);
-        Order order=new Order(balloonColor,balloonSize,clientName, clientAddress, id);
+        Order order=new Order(balloonColor,balloonSize,clientName, clientAddress, id, clientId);
         orderList.add(order);
         return order;
     }

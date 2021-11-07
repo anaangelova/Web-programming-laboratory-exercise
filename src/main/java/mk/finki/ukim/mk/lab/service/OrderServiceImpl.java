@@ -14,13 +14,13 @@ public class OrderServiceImpl implements OrderService{
         this.orderRepository=orderRepository;
     }
     @Override
-    public Order placeOrder(String balloonColor,String balloonSize, String clientName, String clientAddress) {
-        return orderRepository.addOrder(balloonColor,balloonSize, clientName, clientAddress);
+    public Order placeOrder(String balloonColor,String balloonSize, String clientName, String clientAddress, Long clientId) {
+        return orderRepository.addOrder(balloonColor,balloonSize, clientName, clientAddress, clientId);
 
     }
 
     @Override
-    public List<Order> findAllOrders() {
-        return orderRepository.findAllOrders();
+    public List<Order> findAllOrders(Long clientId) {
+        return orderRepository.findAllOrders(clientId);
     }
 }

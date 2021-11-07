@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "orderServlet", urlPatterns = "/orders")
+@WebServlet(name = "orderServlet", urlPatterns = "/ordersServlet")
 public class OrderServlet extends HttpServlet {
     private final SpringTemplateEngine springTemplateEngine;
     private final OrderService orderService;
@@ -23,7 +23,8 @@ public class OrderServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext context=new WebContext(req, resp, req.getServletContext());
-        context.setVariable("allOrders",orderService.findAllOrders());
+
+       /* context.setVariable("allOrders",orderService.findAllOrders(id));*/
         springTemplateEngine.process("listOrders.html",context,resp.getWriter());
     }
 }

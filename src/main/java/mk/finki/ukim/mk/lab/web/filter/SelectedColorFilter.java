@@ -18,11 +18,10 @@ public class SelectedColorFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request= (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-
-        String balloonColor=(String) request.getSession().getAttribute("balloonColor");
+        String balloonColor=(String) request.getSession().getAttribute("balloonColor"); //sega vo kontrolerot se postavuva ovaa vrednost, a ne vo servletot koj ne go koristeme vekje!
         String path = request.getServletPath();
-        if(!"".equals(path) && balloonColor==null){
-            response.sendRedirect("");
+        if(!path.contains("/balloons") && balloonColor==null){
+            response.sendRedirect("/balloons");
         }else{
             filterChain.doFilter(servletRequest,servletResponse);
         }

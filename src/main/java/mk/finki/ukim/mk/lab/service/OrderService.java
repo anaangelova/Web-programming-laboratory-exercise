@@ -5,6 +5,6 @@ import mk.finki.ukim.mk.lab.model.Order;
 import java.util.List;
 
 public interface OrderService {
-    Order placeOrder(String balloonColor,String balloonSize, String clientName, String clientAddress);
-    List<Order> findAllOrders();
+    Order placeOrder(String balloonColor,String balloonSize, String clientName, String clientAddress, Long clientId);
+    List<Order> findAllOrders(Long clientId);
 }
