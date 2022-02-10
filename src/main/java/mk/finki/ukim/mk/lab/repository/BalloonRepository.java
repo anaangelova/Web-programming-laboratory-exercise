@@ -2,6 +2,7 @@ package mk.finki.ukim.mk.lab.repository;
 
 import mk.finki.ukim.mk.lab.model.Balloon;
 import mk.finki.ukim.mk.lab.model.Manufacturer;
+import mk.finki.ukim.mk.lab.model.enums.BalloonType;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -16,16 +17,16 @@ public class BalloonRepository {
 
     public BalloonRepository(){
         this.balloonList=new ArrayList<>();
-        balloonList.add(new Balloon("balloon1","desc for ballon 1"));
-        balloonList.add(new Balloon("balloon2","desc for ballon 2"));
-        balloonList.add(new Balloon("balloon3","desc for ballon 3"));
-        balloonList.add(new Balloon("balloon4","desc for ballon 4"));
-        balloonList.add(new Balloon("balloon5","desc for ballon 5"));
-        balloonList.add(new Balloon("balloon6","desc for ballon 6"));
-        balloonList.add(new Balloon("balloon7","desc for ballon 7"));
-        balloonList.add(new Balloon("balloon8","desc for ballon 8"));
-        balloonList.add(new Balloon("balloon9","desc for ballon 9"));
-        balloonList.add(new Balloon("balloon10","desc for ballon 10"));
+        balloonList.add(new Balloon("balloon1","desc for ballon 1", BalloonType.HEART));
+        balloonList.add(new Balloon("balloon2","desc for ballon 2", BalloonType.SQUARE));
+        balloonList.add(new Balloon("balloon3","desc for ballon 3", BalloonType.OVAL));
+        balloonList.add(new Balloon("balloon4","desc for ballon 4", BalloonType.HEART));
+        balloonList.add(new Balloon("balloon5","desc for ballon 5", BalloonType.TRIANGLE));
+        balloonList.add(new Balloon("balloon6","desc for ballon 6",BalloonType.HEART));
+        balloonList.add(new Balloon("balloon7","desc for ballon 7", BalloonType.SQUARE));
+        balloonList.add(new Balloon("balloon8","desc for ballon 8", BalloonType.OVAL));
+        balloonList.add(new Balloon("balloon9","desc for ballon 9", BalloonType.TRIANGLE));
+        balloonList.add(new Balloon("balloon10","desc for ballon 10", BalloonType.OVAL));
 
     }
     public List<Balloon> findAllBalloons(){
@@ -46,5 +47,9 @@ public class BalloonRepository {
 
     public Optional<Balloon> findById(Long id){
         return balloonList.stream().filter(b -> b.getId().equals(id)).findFirst();
+    }
+
+    public List<Balloon> getByType(String type){
+        return balloonList.stream().filter(b -> b.getTypeOfBalloon().toString().equals(type)).collect(Collectors.toList());
     }
 }

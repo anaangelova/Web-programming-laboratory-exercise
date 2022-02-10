@@ -21,13 +21,13 @@ public class OrderRepository {
 
     public List<Order> findAllOrders(Long clientId){
 
-        return orderList.stream().filter(o -> o.getClientId().equals(clientId)).collect(Collectors.toList());
+        /*return orderList.stream().filter(o -> o.getClientId().equals(clientId)).collect(Collectors.toList());*/
+        return new ArrayList<Order>();
     }
     public Order addOrder(String balloonColor, String balloonSize, String clientName, String clientAddress, Long clientId){
-        Random random=new Random();
-        long id= random.nextInt(100);
-        Order order=new Order(balloonColor,balloonSize,clientName, clientAddress, id, clientId);
+        /*Order order=new Order(balloonColor,balloonSize, clientId);
         orderList.add(order);
-        return order;
+        return order;*/
+        return new Order();
     }
 }

@@ -1,6 +1,6 @@
-package mk.finki.ukim.mk.lab.web;
+package mk.finki.ukim.mk.lab.web.servlet;
 
-import mk.finki.ukim.mk.lab.service.OrderService;
+import mk.finki.ukim.mk.lab.service.interfaces.OrderService;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 

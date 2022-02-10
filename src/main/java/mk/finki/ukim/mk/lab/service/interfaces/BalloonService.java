@@ -1,4 +1,4 @@
-package mk.finki.ukim.mk.lab.service;
+package mk.finki.ukim.mk.lab.service.interfaces;
 
 import mk.finki.ukim.mk.lab.model.Balloon;
 
@@ -11,4 +11,5 @@ public interface BalloonService {
     Optional<Balloon> save(String name, String description, Long manufacturer);
     void deleteById(Long id);
     Optional<Balloon> findById(Long id);
+    List<Balloon> getByType(String type);
 }

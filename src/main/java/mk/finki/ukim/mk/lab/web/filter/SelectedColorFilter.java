@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter
+/*@WebFilter*/
 public class SelectedColorFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -18,7 +18,7 @@ public class SelectedColorFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request= (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        String balloonColor=(String) request.getSession().getAttribute("balloonColor"); //sega vo kontrolerot se postavuva ovaa vrednost, a ne vo servletot koj ne go koristeme vekje!
+        String balloonColor=(String) request.getSession().getAttribute("balloonColor");
         String path = request.getServletPath();
         if(!path.contains("/balloons") && balloonColor==null){
             response.sendRedirect("/balloons");

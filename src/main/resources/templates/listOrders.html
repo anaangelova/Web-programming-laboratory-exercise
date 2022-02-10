@@ -3,21 +3,63 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>List all orders</title>
+    <title>All Orders</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </head>
 <body>
-<h2>All orders:</h2>
-<ul>
-    <li th:each="order: ${allOrders}">
-        <span>Balloon Color: <th:block th:text="${order.balloonColor}"/></span>
-        <span>Balloon Size: <th:block th:text="${order.balloonSize}"/></span>
-        <span>Client Name: <th:block th:text="${order.clientName}"/></span>
-        <span>Client Address: <th:block th:text="${order.clientAddress}"/></span>
-        <span>Order ID: <th:block th:text="${order.getOrderId()}"/></span>
+<div class="container">
+<div class="row">
+    <div class="col-6 h4">
+        All orders in system
+    </div>
+    <div class="col-6">
+        <form th:action="@{/orders/searchResults}" th:method="GET">
+            <label for="searchQuery">Search: </label><br/>
+            <input type="text" id="searchQuery" name="searchQuery"/><br/>
+            <input type='submit' value='OK'/>
 
-    </li>
-</ul>
-<div><a href="/">Back</a></div>
+        </form>
+    </div>
+</div>
+</div>
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12" th:if="${allOrdersInSystem.size() > 0}">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Balloon Color</th>
+                        <th scope="col">Balloon Size</th>
+                        <th scope="col">Client Name</th>
+                        <th scope="col">Client ID</th>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Order Time created</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order: ${allOrdersInSystem}">
+                        <td th:text="${order.getBalloonColor()}"></td>
+                        <td th:text="${order.getBalloonSize()}"></td>
+                        <td th:text="${order.getUser().name}"></td>
+                        <td th:text="${order.getUser().getId()}"></td>
+                        <td th:text="${order.getOrderId()}"></td>
+                        <td th:text="${#temporals.format(order.getDateCreated(), 'dd-MM-yyyy HH:mm')}"></td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div><a href="/orders/allOrders">Back</a></div>
 
 </body>
 </html>

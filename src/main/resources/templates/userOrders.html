@@ -23,15 +23,18 @@
                         <th scope="col">Client Name</th>
                         <th scope="col">Client Address</th>
                         <th scope="col">Order ID</th>
+                        <th scope="col">Order Time created</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="order : ${orders}">
                         <td th:text="${order.getBalloonColor()}"></td>
                         <td th:text="${order.getBalloonSize()}"></td>
-                        <td th:text="${order.getClientName()}"></td>
-                        <td th:text="${order.getClientAddress()}"></td>
+                        <td th:text="${order.getUser().name}"></td>
+                        <td th:text="${order.getUser().getId()}"></td>
                         <td th:text="${order.getOrderId()}"></td>
+                        <td th:text="${#temporals.format(order.getDateCreated(), 'dd-MM-yyyy HH:mm')}"></td>
+
                     </tr>
                     </tbody>
                 </table>

@@ -34,8 +34,9 @@
             <td><th:block th:text="${session.clientName}"/></td>
         </tr>
         <tr>
-            <td><b>Client Address </b></td>
-            <td><th:block th:text="${session.clientAddress}"/></td>
+            <td><b>Order Time Created </b></td>
+            <td><th:block th:text="${#temporals.format(session.OrderTime, 'dd-MM-yyyy HH:mm')}"/></td>
+
         </tr>
         <tr>
             <td><b>Client IP Address</b></td>
@@ -53,15 +54,22 @@
             <td><b>Balloon Size </b></td>
             <td><th:block th:text="${session.balloonSize}"/></td>
         </tr>
+
+
     </table>
+
+
     <div>
         <a href="/logout">Log out</a>
     </div>
 
     <div>
-        <a href="/orders">All orders</a>
+        <a href="/orders" type="button">All orders for client</a>
     </div>
 
+    <div>
+        <a href="/orders/allOrders" type="button">All orders in system</a>
+    </div>
 </section>
 </body>
 </html>
